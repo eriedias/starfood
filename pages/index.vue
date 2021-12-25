@@ -31,12 +31,32 @@
         </div>
       </div>
     </div>
+    <button @click="addTotal ()">
+      Total: {{ total }}
+    </button>
   </section>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'IndexPage',
-  layout: 'DefaultMain'
+  layout: 'DefaultMain',
+
+  computed: {
+    total () {
+      return this.$store.state.total
+    }
+  },
+
+  methods: {
+    addTotal () {
+      this.$store.commit('add')
+    },
+    ...mapMutations({
+      add: 'add'
+    })
+  }
 }
 </script>
